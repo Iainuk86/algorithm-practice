@@ -1,4 +1,4 @@
-package org.iainuk.stacks;
+package org.iainuk.stack;
 
 import java.util.Iterator;
 

@@ -1,4 +1,4 @@
-package org.iainuk.linkedlists;
+package org.iainuk.linkedlist;
 
 import java.util.Iterator;
 

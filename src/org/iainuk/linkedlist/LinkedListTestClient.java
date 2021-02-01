@@ -1,4 +1,4 @@
-package org.iainuk.linkedlists;
+package org.iainuk.linkedlist;
 
 public class LinkedListTestClient {
 

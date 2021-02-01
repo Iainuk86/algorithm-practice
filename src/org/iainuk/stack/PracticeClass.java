@@ -1,4 +1,4 @@
-package org.iainuk.stacks;
+package org.iainuk.stack;
 
 public class PracticeClass {
     public static void main(String[] args) {

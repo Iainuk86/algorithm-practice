@@ -1,4 +1,4 @@
-package org.iainuk.queues;
+package org.iainuk.queue;
 
 import java.io.File;
 import java.io.FileNotFoundException;

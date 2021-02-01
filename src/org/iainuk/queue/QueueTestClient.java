@@ -1,4 +1,4 @@
-package org.iainuk.queues;
+package org.iainuk.queue;
 
 public class QueueTestClient {
 
