@@ -25,10 +25,14 @@ public class UnionFind {
 
     public int components()                 { return this.count; }
     public boolean isEmpty()                { return this.count == 0; }
-    public int[] getIdArray()               { return this.id; }
     public boolean connected(int x, int y)  { return id[x] == id[y]; }
-    public int getId(int index)             { return this.id[index]; }
-    public int find(int x)                  { return id[x]; }
+
+    public int find(int x) {
+        while (id[x] != x) {
+            x = id[x];
+        }
+        return x;
+    }
 
     public void union(int x, int y) {
         int i = find(x);
@@ -38,6 +42,6 @@ public class UnionFind {
         if (size[i] < size[j])              { id[i] = j; size[j] += size[i]; }
         else                                { id[j] = i; size[i] += size[j]; }
 
-        count--; return;
+        count--;
     }
 }
