@@ -25,7 +25,6 @@ public class UnionFind {
     public int components()                 { return this.count; }
     public boolean isEmpty()                { return this.count == 0; }
     public boolean connected(int x, int y)  { return find(x) == find(y); }
-    public int getId(int x) { return id[x]; }
 
     /**
      * Returns the root of the component containing {@code x}.
