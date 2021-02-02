@@ -12,7 +12,7 @@ public class UFTest {
         uf.union(5, 7);
         uf.union(0, 3);
         uf.union(4, 2);
-
+        //poo
         for (int i = 0; i < 10; i++) {
             System.out.println(i + ": " + uf.getId(i));
         }
