@@ -27,7 +27,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89406777-88b7-4d4a-9148-467c3285ea50" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/org/iainuk/sorting/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/iainuk/sorting/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/iainuk/sorting/IgnoreTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +109,7 @@
       <workItem from="1612180064875" duration="8659000" />
       <workItem from="1612260162418" duration="6740000" />
       <workItem from="1612311395077" duration="11475000" />
-      <workItem from="1612327051044" duration="281000" />
+      <workItem from="1612327051044" duration="659000" />
     </task>
     <servers />
   </component>
