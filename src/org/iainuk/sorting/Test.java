@@ -1,16 +1,21 @@
 package org.iainuk.sorting;
 
+import java.util.Arrays;
+import java.util.Random;
+
 public class Test {
     public static void main(String[] args) {
-        Character[] testArray =
-                {'E', 'A', 'S', 'Y', 'S', 'H', 'E', 'L', 'L', 'S', 'O', 'R', 'T', 'Q', 'U', 'E', 'S', 'T', 'I', 'O', 'N'};
 
-        final long begin = System.nanoTime();
-        Insertion.sort(testArray);
-        final long end = System.nanoTime();
-        System.out.println("Finished in " + (end - begin) / 1000000.0 + "ms");
+        int N = 100;
+        Random random = new Random();
+        int max = 1000000;
+        Integer[] array = new Integer[N];
 
+        for (int i = 0; i < array.length; i++) {
+            array[i] = random.nextInt((2*max)) - max;
+        }
 
-        // ANOTHER FUCKING TEST
+        Shell.sort(array);
+        System.out.println(Arrays.toString(array));
     }
 }
