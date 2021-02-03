@@ -51,18 +51,21 @@ public class UnionFind {
     }
 
     /**
-     * Merges component containing x with component containing y.
-     * Smallest component is added to the largest.
+     * Merges component containing x with component containing y
+     * if not already connected and updates path to root.
+     * Weighted - smallest component is added to the largest.
      *
      * @param   x one element
      * @param   y the other element
      * @throws  IllegalArgumentException unless both
      *          {@code 0 <= x < N} and {@code 0 <= y < N}
-     *
      */
     public void union(int x, int y) {
-        int i = find(x);
-        int j = find(y);
+        validate(x);
+        validate(y);
+
+        int i = id[x];
+        int j = id[y];
         if (i == j) return;
 
         if (size[i] < size[j])              { id[i] = j; size[j] += size[i]; }
