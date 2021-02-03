@@ -9,5 +9,8 @@ public class Test {
         Insertion.sort(testArray);
         final long end = System.nanoTime();
         System.out.println("Finished in " + (end - begin) / 1000000.0 + "ms");
+
+
+        // ANOTHER FUCKING TEST
     }
 }
