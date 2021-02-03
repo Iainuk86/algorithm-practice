@@ -2,6 +2,9 @@ package org.iainuk.sorting;
 
 import java.util.Random;
 
+/**
+ * one more test before bed
+ */
 public class SortTimer {
 
     public static void main(String[] args) {
