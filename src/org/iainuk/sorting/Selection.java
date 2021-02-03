@@ -1,7 +1,5 @@
 package org.iainuk.sorting;
 
-import java.util.Arrays;
-
 public class Selection {
 
     public static void sort(Comparable[] array) {
@@ -14,7 +12,6 @@ public class Selection {
                 if (less(array, j, min)) min = j;
             }
             exchange(array, i, min);
-            System.out.println(Arrays.toString(array));
         }
     }
 

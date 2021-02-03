@@ -1,18 +1,14 @@
 package org.iainuk.sorting;
 
-import java.util.Arrays;
-
 public class Insertion {
 
     public static void sort(Comparable[] array) {
-        System.out.println(Arrays.toString(array));
         int N = array.length;
 
         for (int i = 1; i < N; i++) {
             for (int j = i; j > 0 && less(array, j, j-1); j--) {
                 exchange(array, j, j-1);
             }
-            System.out.println(Arrays.toString(array));
         }
     }
 

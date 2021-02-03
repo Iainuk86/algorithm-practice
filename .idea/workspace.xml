@@ -28,6 +28,9 @@
   <component name="ChangeListManager">
     <list default="true" id="89406777-88b7-4d4a-9148-467c3285ea50" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/iainuk/sorting/Insertion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/iainuk/sorting/Insertion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/iainuk/sorting/Selection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/iainuk/sorting/Selection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/iainuk/sorting/Shell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/iainuk/sorting/Shell.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,9 +69,16 @@
       <recent name="C:\Users\iainu\Desktop\AlgorithmPractice" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Application.SortTimer">
     <configuration name="LinkedListTestClient" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.iainuk.linkedlist.LinkedListTestClient" />
+      <module name="AlgorithmPractice" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SortTimer" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.iainuk.sorting.SortTimer" />
       <module name="AlgorithmPractice" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -90,6 +100,7 @@
     <list>
       <item itemvalue="Application.LinkedListTestClient" />
       <item itemvalue="Application.Test" />
+      <item itemvalue="Application.SortTimer" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -114,7 +125,7 @@
       <workItem from="1612180064875" duration="8659000" />
       <workItem from="1612260162418" duration="6740000" />
       <workItem from="1612311395077" duration="11475000" />
-      <workItem from="1612327051044" duration="964000" />
+      <workItem from="1612327051044" duration="2594000" />
     </task>
     <servers />
   </component>
@@ -150,34 +161,34 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="520" y="236" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1612180542219" />
-    <state x="223" y="0" width="1089" height="824" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1612318549572">
+    <state x="223" y="0" width="1089" height="824" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1612328973654">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="223" y="0" width="1089" height="824" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1612318549572" />
+    <state x="223" y="0" width="1089" height="824" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1612328973654" />
     <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1611033230725">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1611033230725" />
-    <state x="498" y="214" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1612318548032">
+    <state x="498" y="214" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1612328972581">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="498" y="214" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1612318548032" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1612326838951">
+    <state x="498" y="214" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1612328972581" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1612329635467">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1612326838951" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1612326838951">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1612329635467" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1612329635467">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1612326838951" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1612326838951">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1612329635467" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1612329635467">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1612326838951" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1612326838951">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1612329635467" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1612329635467">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1612326838951" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1612329635467" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1612272457888">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
