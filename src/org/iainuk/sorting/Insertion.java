@@ -12,6 +12,14 @@ public class Insertion {
         }
     }
 
+    public static void sort(Comparable[] a, int lo, int hi) {
+        for (int i = lo; i <= hi; i++) {
+            for (int j = i; j > lo && less(a, j, j-1); j--) {
+                exchange(a, j, j-1);
+            }
+        }
+    }
+
     private static boolean less(Comparable[] array, int a, int b) {
         return array[a].compareTo(array[b]) < 0;
     }

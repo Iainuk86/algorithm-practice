@@ -11,7 +11,7 @@ public class SortTimer {
 
         for (int N = 125; true; N += N) {
             double time = timeTrial(N);
-            System.out.printf("%d: %5.1fs", N, time);
+            System.out.printf("%d: %5.3fs", N, time);
             System.out.println();
         }
     }
@@ -27,7 +27,7 @@ public class SortTimer {
         }
 
         long start = System.nanoTime();
-        Shell.sort(array);
+        TopDownMerge.sort(array);
         long end = System.nanoTime();
         long duration = end - start;
 
