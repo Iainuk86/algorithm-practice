@@ -9,10 +9,13 @@ public class SortTimer {
 
     public static void main(String[] args) {
 
+        double previousTime = 1.0;
+
         for (int N = 125; true; N += N) {
             double time = timeTrial(N);
-            System.out.printf("%d: %5.3fs", N, time);
-            System.out.println();
+            double ratio = time / previousTime;
+            System.out.printf("%d: %5.3fs. Ratio to last: %5.3fs\n", N, time, ratio);
+            previousTime = time;
         }
     }
 
@@ -27,7 +30,7 @@ public class SortTimer {
         }
 
         long start = System.nanoTime();
-        Quick.sort(array);
+        Selection.sort(array);
         long end = System.nanoTime();
         long duration = end - start;
 
