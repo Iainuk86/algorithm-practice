@@ -15,7 +15,7 @@ public class Test {
             array[i] = random.nextInt((2*max)) - max;
         }
 
-        Shell.sort(array);
+        Quick3Way.sort(array);
         System.out.println(Arrays.toString(array));
     }
 }

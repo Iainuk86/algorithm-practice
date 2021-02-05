@@ -27,7 +27,7 @@ public class SortTimer {
         }
 
         long start = System.nanoTime();
-        TopDownMerge.sort(array);
+        Quick.sort(array);
         long end = System.nanoTime();
         long duration = end - start;
 
