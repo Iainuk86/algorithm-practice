@@ -64,8 +64,8 @@ public class IndexMaxPQ<T extends Comparable<T>> implements Iterable<T> {
         int indexOfMax = heapIndexToUniqueIndex[1];
         T maxValue = values[indexOfMax];
 
-        exchange(1, count--);
-        sink(1);
+        exchange(this,1, count--);
+        sink(this,1);
         assert indexOfMax == heapIndexToUniqueIndex[count+1];
 
         values[indexOfMax] = null;
@@ -87,7 +87,7 @@ public class IndexMaxPQ<T extends Comparable<T>> implements Iterable<T> {
         // if not contains i
         values[i] = newValue;
         swim(uniqueIndexToHeapIndex[i]);
-        sink(uniqueIndexToHeapIndex[i]);
+        sink(this, uniqueIndexToHeapIndex[i]);
     }
 
     public void delete(int i)
@@ -95,9 +95,9 @@ public class IndexMaxPQ<T extends Comparable<T>> implements Iterable<T> {
         // validate i
         // if not contains
         int index = uniqueIndexToHeapIndex[i];
-        exchange(index, count--);
+        exchange(this, index, count--);
         swim(index);
-        sink(index);
+        sink(this, index);
         values[i] = null;
         uniqueIndexToHeapIndex[i] = -1;
     }
@@ -107,36 +107,52 @@ public class IndexMaxPQ<T extends Comparable<T>> implements Iterable<T> {
         // TODO
     }
 
-    private boolean less(int i, int j)
-    { return values[heapIndexToUniqueIndex[i]].compareTo(values[heapIndexToUniqueIndex[j]]) < 0; }
-
-    private void exchange(int i, int j)
+    public T[] sorted()
     {
-        int temp = heapIndexToUniqueIndex[i];
-        heapIndexToUniqueIndex[i] = heapIndexToUniqueIndex[j];
-        heapIndexToUniqueIndex[j] = temp;
+        T[] sorted = (T[]) new Comparable[maxN];
+        IndexMaxPQ<T> copy = new IndexMaxPQ<>(maxN);
 
-        uniqueIndexToHeapIndex[heapIndexToUniqueIndex[i]] = i;
-        uniqueIndexToHeapIndex[heapIndexToUniqueIndex[j]] = j;
+        for (int i = 1; i <= count; i++)
+            copy.insert(heapIndexToUniqueIndex[i], values[heapIndexToUniqueIndex[i]]);
+
+        int index = 0;
+        for (Object o : copy) {
+            sorted[index++] = copy.delMax();
+        }
+        return sorted;
+
+    }
+
+    private boolean less(IndexMaxPQ pq, int i, int j)
+    { return pq.values[pq.heapIndexToUniqueIndex[i]].compareTo(pq.values[pq.heapIndexToUniqueIndex[j]]) < 0; }
+
+    private void exchange(IndexMaxPQ pq, int i, int j)
+    {
+        int temp = pq.heapIndexToUniqueIndex[i];
+        pq.heapIndexToUniqueIndex[i] = pq.heapIndexToUniqueIndex[j];
+        pq.heapIndexToUniqueIndex[j] = temp;
+
+        pq.uniqueIndexToHeapIndex[pq.heapIndexToUniqueIndex[i]] = i;
+        pq.uniqueIndexToHeapIndex[pq.heapIndexToUniqueIndex[j]] = j;
     }
 
     private void swim(int k)
     {
-        while (k > 1 && less(k/2, k))
+        while (k > 1 && less(this,k/2, k))
         {
-            exchange(k, k/2);
+            exchange(this, k, k/2);
             k = k/2;
         }
     }
 
-    private void sink(int k)
+    private void sink(IndexMaxPQ pq, int k)
     {
-        while (2*k <= count)
+        while (2*k <= pq.count)
         {
             int j = 2*k;
-            if (j < count && less(j, j+1))   j++;
-            if (!less(k, j))                     return;
-            exchange(k, j);
+            if (j < pq.count && less(pq, j, j+1))   j++;
+            if (!less(pq, k, j))                     return;
+            exchange(pq, k, j);
             k = j;
         }
     }
@@ -150,7 +166,8 @@ public class IndexMaxPQ<T extends Comparable<T>> implements Iterable<T> {
 
         public HeapIterator()
         {
-            copy = new IndexMaxPQ<T>(heapIndexToUniqueIndex.length-1);
+            int N = heapIndexToUniqueIndex.length;
+            copy = new IndexMaxPQ<>(N-1);
             for (int i = 1; i <= count; i++)
                 copy.insert(heapIndexToUniqueIndex[i], values[heapIndexToUniqueIndex[i]]);
         }
