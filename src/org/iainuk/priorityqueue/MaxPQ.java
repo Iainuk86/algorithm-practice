@@ -7,7 +7,7 @@ public class MaxPQ<T extends Comparable<T>> {
 
     public MaxPQ()
     {
-        this(97);
+        this(65);
     }
 
     public MaxPQ(int max)
