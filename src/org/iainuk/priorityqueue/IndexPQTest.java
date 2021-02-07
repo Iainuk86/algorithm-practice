@@ -31,6 +31,6 @@ public class IndexPQTest {
         }
 
         System.out.println();
-        System.out.println(Arrays.toString(pq.sorted()));
+        System.out.println(Arrays.toString(pq.asSortedArray()));
     }
 }

@@ -107,7 +107,7 @@ public class IndexMaxPQ<T extends Comparable<T>> implements Iterable<T> {
         // TODO
     }
 
-    public T[] sorted()
+    public T[] asSortedArray()
     {
         T[] sorted = (T[]) new Comparable[maxN];
         IndexMaxPQ<T> copy = new IndexMaxPQ<>(maxN);
@@ -124,7 +124,8 @@ public class IndexMaxPQ<T extends Comparable<T>> implements Iterable<T> {
     }
 
     private boolean less(IndexMaxPQ pq, int i, int j)
-    { return pq.values[pq.heapIndexToUniqueIndex[i]].compareTo(pq.values[pq.heapIndexToUniqueIndex[j]]) < 0; }
+    { return pq.values[pq.heapIndexToUniqueIndex[i]]
+                .compareTo(pq.values[pq.heapIndexToUniqueIndex[j]]) < 0; }
 
     private void exchange(IndexMaxPQ pq, int i, int j)
     {
