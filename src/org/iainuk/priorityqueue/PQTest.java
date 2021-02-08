@@ -6,7 +6,6 @@ public class PQTest {
     public static void main(String[] args) {
 
         ArrayList<String> list = new ArrayList<>();
-        // MaxPQ<String> test = new MaxPQ<>(10);
 
         list.add("12");
         list.add("wtf");
@@ -21,6 +20,17 @@ public class PQTest {
 
         MaxPQ<String> pq = new MaxPQ<>(list);
 
-        System.out.println(pq);
+//        String[] strings = new String[7];
+//        strings[0] = "12";
+//        strings[1] = "wtf";
+//        strings[2] = "Testing yo";
+//        strings[3] = "gengoieanigoa";
+//        strings[4] = "Morgzirra";
+//        strings[5] = "iain woz 'ere";
+//        strings[6] = "£%£%£!Y&&&";
+//
+//        MaxPQ<String> pq = new MaxPQ<>(strings);
+//
+//        System.out.println(pq);
     }
 }

@@ -29,9 +29,9 @@ public class IndexMaxPQ<T extends Comparable<T>> implements Iterable<T> {
         }
     }
 
-    public IndexMaxPQ(List<T> array)
+    public IndexMaxPQ(List<T> list)
     {
-        int N = array.size();
+        int N = list.size();
         this.maxN = N;
         this.count = 0;
         this.heapIndexToUniqueIndex = new int[N+1];
@@ -44,7 +44,26 @@ public class IndexMaxPQ<T extends Comparable<T>> implements Iterable<T> {
 
         for (int i = 0; i < N; i++)
         {
-            this.insert(i, array.get(i));
+            this.insert(i, list.get(i));
+        }
+    }
+
+    public IndexMaxPQ(T[] array)
+    {
+        int N = array.length;
+        this.maxN = N;
+        this.count = 0;
+        this.heapIndexToUniqueIndex = new int[N+1];
+        this.uniqueIndexToHeapIndex = new int[N+1];
+        this.values = (T[]) new Comparable[N];
+        for (int i = 0; i <= N; i++)
+        {
+            this.uniqueIndexToHeapIndex[i] = -1;
+        }
+
+        for (int i = 0; i < N; i++)
+        {
+            this.insert(i, array[i]);
         }
     }
 

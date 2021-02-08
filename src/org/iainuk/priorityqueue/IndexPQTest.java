@@ -7,12 +7,7 @@ public class IndexPQTest {
         // insert a bunch of strings
         String[] strings = { "it", "was", "the", "best", "of", "times", "it", "was", "the", "worst" };
 
-//        IndexMaxPQ<String> pq = new IndexMaxPQ<>(strings.length);
-//        for (int i = 0; i < strings.length; i++) {
-//            pq.insert(i, strings[i]);
-//        }
-
-        IndexMaxPQ<String> pq = new IndexMaxPQ(Arrays.asList(strings));
+        IndexMaxPQ<String> pq = new IndexMaxPQ(strings);
 
         // delete and print each key
         while (!pq.isEmpty()) {

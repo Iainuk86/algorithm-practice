@@ -19,14 +19,25 @@ public class MaxPQ<T extends Comparable<T>> {
         this.pq = (T[]) new Comparable[max+1];
     }
 
-    public MaxPQ(List<T> array)
+    public MaxPQ(List<T> list)
     {
         this.count = 0;
-        int N = array.size();
+        int N = list.size();
         this.pq = (T[]) new Comparable[N+1];
         for (int i = 0; i < N; i++)
         {
-            this.insert(array.get(i));
+            this.insert(list.get(i));
+        }
+    }
+
+    public MaxPQ(T[] array)
+    {
+        this.count = 0;
+        int N = array.length;
+        this.pq = (T[]) new Comparable[N+1];
+        for (int i = 0; i < N; i++)
+        {
+            this.insert(array[i]);
         }
     }
 
