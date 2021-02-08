@@ -7,7 +7,7 @@ public class IndexMaxPQ<T extends Comparable<T>> implements Iterable<T> {
     private int maxN;
     private int count;
     private int[] heapIndexToUniqueIndex;
-    private int[] uniqueIndexToHeapIndex; // used to support contains functionality
+    private int[] uniqueIndexToHeapIndex;
     private T[] values;
 
     public IndexMaxPQ(int max)
@@ -16,10 +16,10 @@ public class IndexMaxPQ<T extends Comparable<T>> implements Iterable<T> {
         this.count = 0;
         this.heapIndexToUniqueIndex = new int[max+1];
         this.uniqueIndexToHeapIndex = new int[max+1];
-        this.values = (T[]) new Comparable[max+1];
+        this.values = (T[]) new Comparable[max];
         for (int i = 0; i <= max; i++)
         {
-            uniqueIndexToHeapIndex[i] = -1;
+            this.uniqueIndexToHeapIndex[i] = -1;
         }
     }
 
@@ -31,14 +31,16 @@ public class IndexMaxPQ<T extends Comparable<T>> implements Iterable<T> {
 
     public boolean containsIndex(int i)
     {
-        // validate
+        validateIndex(i);
         return uniqueIndexToHeapIndex[i] != -1;
     }
 
     public void insert(int uniqueIndex, T value)
     {
-        // validate
-        // if contains
+        validateIndex(uniqueIndex);
+        if (this.containsIndex(uniqueIndex))
+            throw new IllegalArgumentException("Index " + uniqueIndex + " already in use.");
+
         count++;
         uniqueIndexToHeapIndex[uniqueIndex] = count;
         heapIndexToUniqueIndex[count] = uniqueIndex;
@@ -48,19 +50,20 @@ public class IndexMaxPQ<T extends Comparable<T>> implements Iterable<T> {
 
     public int indexOfMaximumValue()
     {
-        // if n == 0
+        if (this.count == 0) throw new NoSuchElementException("Priority queue is empty");
         return heapIndexToUniqueIndex[1];
     }
 
     public T maxValue()
     {
-        // if n == 0
+        if (this.count == 0) throw new NoSuchElementException("Priority queue is empty");
         return values[heapIndexToUniqueIndex[1]];
     }
 
     public T delMax()
     {
-        // if n == 0
+        if (this.count == 0) throw new NoSuchElementException("Priority queue is empty");
+
         int indexOfMax = heapIndexToUniqueIndex[1];
         T maxValue = values[indexOfMax];
 
@@ -76,15 +79,14 @@ public class IndexMaxPQ<T extends Comparable<T>> implements Iterable<T> {
 
     public T valueOf(int i)
     {
-        // validate i
-        // if not contains i
+        validateAndCheckIfExists(i);
         return values[i];
     }
 
     public void changeValue(int i, T newValue)
     {
-        // validate i
-        // if not contains i
+        validateAndCheckIfExists(i);
+
         values[i] = newValue;
         swim(uniqueIndexToHeapIndex[i]);
         sink(this, uniqueIndexToHeapIndex[i]);
@@ -92,19 +94,14 @@ public class IndexMaxPQ<T extends Comparable<T>> implements Iterable<T> {
 
     public void delete(int i)
     {
-        // validate i
-        // if not contains
+        validateAndCheckIfExists(i);
+
         int index = uniqueIndexToHeapIndex[i];
         exchange(this, index, count--);
         swim(index);
         sink(this, index);
         values[i] = null;
         uniqueIndexToHeapIndex[i] = -1;
-    }
-
-    private void validateIndex(int i)
-    {
-        // TODO
     }
 
     public T[] asSortedArray()
@@ -151,11 +148,22 @@ public class IndexMaxPQ<T extends Comparable<T>> implements Iterable<T> {
         while (2*k <= pq.count)
         {
             int j = 2*k;
-            if (j < pq.count && less(pq, j, j+1))   j++;
-            if (!less(pq, k, j))                     return;
+            if (j < pq.count && less(pq, j, j+1)) j++;
+            if (!less(pq, k, j)) break;
             exchange(pq, k, j);
             k = j;
         }
+    }
+
+    private void validateIndex(int index)
+    {
+        if (index < 0 || index >= this.maxN) throw new IndexOutOfBoundsException();
+    }
+
+    private void validateAndCheckIfExists(int index)
+    {
+        if (index < 0 || index >= this.maxN) throw new IndexOutOfBoundsException();
+        if (!this.containsIndex(index)) throw new NoSuchElementException("Index not in priority queue");
     }
 
     public Iterator<T> iterator()
@@ -184,6 +192,4 @@ public class IndexMaxPQ<T extends Comparable<T>> implements Iterable<T> {
             return copy.delMax();
         }
     }
-
-
 }
