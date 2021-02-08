@@ -1,9 +1,12 @@
 package org.iainuk.priorityqueue;
 
+import java.util.List;
+
+// TODO add resizing
 public class MaxPQ<T extends Comparable<T>> {
 
     private T[] pq;
-    private int N = 0;
+    private int count;
 
     public MaxPQ()
     {
@@ -12,26 +15,38 @@ public class MaxPQ<T extends Comparable<T>> {
 
     public MaxPQ(int max)
     {
+        this.count = 0;
         this.pq = (T[]) new Comparable[max+1];
     }
 
+    public MaxPQ(List<T> array)
+    {
+        this.count = 0;
+        int N = array.size();
+        this.pq = (T[]) new Comparable[N+1];
+        for (int i = 0; i < N; i++)
+        {
+            this.insert(array.get(i));
+        }
+    }
+
     public boolean isEmpty()
-    { return this.N == 0; }
+    { return this.count == 0; }
 
     public int count()
-    { return this.N; }
+    { return this.count; }
 
     public void insert(T key)
     {
-        pq[++N] = key;
-        swim(N);
+        pq[++count] = key;
+        swim(count);
     }
 
     public T delMax()
     {
         T max = pq[1];
-        exchange(1, N--);
-        pq[N+1] = null;
+        exchange(1, count--);
+        pq[count +1] = null;
         sink(1);
         return max;
     }
@@ -47,10 +62,10 @@ public class MaxPQ<T extends Comparable<T>> {
 
     public void sink(int key)
     {
-        while (2*key <= N)
+        while (2*key <= count)
         {
             int j = 2*key;
-            if (j < N && less(j, j+1))   j++;
+            if (j < count && less(j, j+1))   j++;
             if (pq[key].compareTo(pq[j]) >= 0) return;
             exchange(key, j);
             key = j;
@@ -72,9 +87,11 @@ public class MaxPQ<T extends Comparable<T>> {
     public String toString()
     {
         String result = "";
-        for (Object o : this.pq) {
-            result += o + ", ";
+        for (int i = 1; i < this.pq.length-1; i++)
+        {
+            result += pq[i] + ", ";
         }
+        result += pq[count];
         return result;
     }
 }

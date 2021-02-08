@@ -1,6 +1,7 @@
 package org.iainuk.priorityqueue;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class IndexMaxPQ<T extends Comparable<T>> implements Iterable<T> {
@@ -9,6 +10,11 @@ public class IndexMaxPQ<T extends Comparable<T>> implements Iterable<T> {
     private int[] heapIndexToUniqueIndex;
     private int[] uniqueIndexToHeapIndex;
     private T[] values;
+
+    public IndexMaxPQ()
+    {
+        this(65);
+    }
 
     public IndexMaxPQ(int max)
     {
@@ -20,6 +26,25 @@ public class IndexMaxPQ<T extends Comparable<T>> implements Iterable<T> {
         for (int i = 0; i <= max; i++)
         {
             this.uniqueIndexToHeapIndex[i] = -1;
+        }
+    }
+
+    public IndexMaxPQ(List<T> array)
+    {
+        int N = array.size();
+        this.maxN = N;
+        this.count = 0;
+        this.heapIndexToUniqueIndex = new int[N+1];
+        this.uniqueIndexToHeapIndex = new int[N+1];
+        this.values = (T[]) new Comparable[N];
+        for (int i = 0; i <= N; i++)
+        {
+            this.uniqueIndexToHeapIndex[i] = -1;
+        }
+
+        for (int i = 0; i < N; i++)
+        {
+            this.insert(i, array.get(i));
         }
     }
 
