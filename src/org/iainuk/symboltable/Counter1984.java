@@ -2,19 +2,9 @@ package org.iainuk.symboltable;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
-import java.util.Map;
-import java.util.Map.Entry;
 
 public class Counter1984 {
-
-        private static boolean ASC = true;
-        private static boolean DESC = false;
 
     public static void main(String[] args) {
 
@@ -37,6 +27,7 @@ public class Counter1984 {
 //        for (String key : freq.keys()) {
 //            System.out.println(key + ": " + freq.get(key));
 //        }
+        
         System.out.println(freq.height());
 
     }
