@@ -2,7 +2,6 @@ package org.iainuk.priorityqueue;
 
 import java.util.List;
 
-// TODO add resizing
 public class MaxPQ<T extends Comparable<T>> {
 
     private T[] pq;
@@ -10,7 +9,7 @@ public class MaxPQ<T extends Comparable<T>> {
 
     public MaxPQ()
     {
-        this(65);
+        this(1);
     }
 
     public MaxPQ(int max)
@@ -49,6 +48,7 @@ public class MaxPQ<T extends Comparable<T>> {
 
     public void insert(T key)
     {
+        if (this.count == this.pq.length) resize(2*this.pq.length);
         pq[++count] = key;
         swim(count);
     }
@@ -59,6 +59,10 @@ public class MaxPQ<T extends Comparable<T>> {
         exchange(1, count--);
         pq[count +1] = null;
         sink(1);
+
+        if (this.count > 0 && this.count == this.pq.length/4)
+            resize(this.pq.length/2);
+        
         return max;
     }
 
@@ -92,6 +96,16 @@ public class MaxPQ<T extends Comparable<T>> {
         T temp = pq[a];
         pq[a] = pq[b];
         pq[b] = temp;
+    }
+
+    private void resize(int newSize)
+    {
+        T[] temp = (T[]) new Object[newSize];
+        for (int i = 0; i < this.pq.length; i++)
+        {
+            temp[i] = this.pq[i];
+        }
+        this.pq = temp;
     }
 
     @Override
