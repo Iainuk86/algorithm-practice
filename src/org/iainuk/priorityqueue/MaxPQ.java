@@ -62,7 +62,7 @@ public class MaxPQ<T extends Comparable<T>> {
 
         if (this.count > 0 && this.count == this.pq.length/4)
             resize(this.pq.length/2);
-        
+
         return max;
     }
 
