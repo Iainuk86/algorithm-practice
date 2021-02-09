@@ -18,7 +18,7 @@ public class Counter1984 {
 
     public static void main(String[] args) {
 
-        HashMap<String, Integer> freq = new HashMap<>();
+        BinarySearchTree<String, Integer> freq = new BinarySearchTree<>();
         String word;
 
         try {
@@ -26,51 +26,18 @@ public class Counter1984 {
             while (scanner.hasNext())
             {
                 word = scanner.next();
-                freq.putIfAbsent(word, 1);
-                freq.put(word, freq.get(word)+1);
+                if (freq.get(word) == null) freq.put(word, 1);
+                else freq.put(word, freq.get(word)+1);
             }
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        HashMap<String, Integer> sorted = (HashMap<String, Integer>) sortByComparator(freq, DESC);
+//        for (String key : freq.keys()) {
+//            System.out.println(key + ": " + freq.get(key));
+//        }
+        System.out.println(freq.height());
 
-        printMap(sorted);
-
-    }
-
-    private static Map<String, Integer> sortByComparator(Map<String, Integer> unsortedMap, final boolean order)
-    {
-        List<Entry<String, Integer>> list = new LinkedList<>(unsortedMap.entrySet());
-
-        // Sorting the list based on values
-        Collections.sort(list, (o1, o2) -> {
-
-            if (order)
-            {
-                return o1.getValue().compareTo(o2.getValue());
-            }
-            else
-            {
-                return o2.getValue().compareTo(o1.getValue());
-
-            }
-        });
-
-        // Maintaining insertion order with the help of LinkedList
-        Map<String, Integer> sortedMap = new LinkedHashMap<>();
-
-        for (Entry<String, Integer> entry : list)
-        {
-            sortedMap.put(entry.getKey(), entry.getValue());
-        }
-
-        return sortedMap;
-    }
-
-    private static void printMap(Map<String, Integer> map)
-    {
-        map.forEach((key, value) -> System.out.println(key + ": " + value));
     }
 }

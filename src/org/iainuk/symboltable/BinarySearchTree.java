@@ -21,6 +21,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
     public V get(K key)
     {
         Node x = get(root, key);
+        if (x == null) return null;
         return x.val;
     }
 
@@ -53,6 +54,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
     public K min()
     {
         Node x = min(root);
+        if (x == null) return null;
         return x.key;
     }
 
@@ -65,6 +67,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
     public K max()
     {
         Node x = max(root);
+        if (x == null) return null;
         return x.key;
     }
 
@@ -77,6 +80,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
     public K floor(K key)
     {
         Node x = floor(root, key);
+        if (x == null) return null;
         return x.key;
     }
 
@@ -96,6 +100,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
     public K ceiling(K key)
     {
         Node x = ceiling(root, key);
+        if (x == null) return null;
         return x.key;
     }
 
@@ -115,6 +120,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
     public K select(int index)
     {
         Node x = select(root, index);
+        if (x == null) return null;
         return x.key;
     }
 
@@ -193,7 +199,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
     public Iterable<K> keys()
     { return keys(min(), max()); }
 
-    private Iterable<K> keys(K lo, K hi)
+    public Iterable<K> keys(K lo, K hi)
     {
         ArrayQueue<K> q = new ArrayQueue();
         keys(root, q, lo, hi);
@@ -209,6 +215,15 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
         if (cmplo < 0)                  keys(x.left, q, lo, hi);
         if (cmplo <= 0 && cmphi >= 0)   q.enqueue(x.key);
         if (cmphi > 0)                  keys(x.right, q, lo, hi);
+    }
+
+    public int height()
+    { return height(root); }
+
+    private int height(Node x)
+    {
+        if (x == null) return -1;
+        return 1 + Math.max(height(x.left), height(x.right));
     }
 
     private class Node
