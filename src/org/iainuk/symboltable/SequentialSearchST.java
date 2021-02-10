@@ -10,10 +10,10 @@ public class SequentialSearchST<K, V> {
     public SequentialSearchST() {}
 
     public int size()
-    { return this.count; }
+    { return count; }
 
     public boolean isEmpty()
-    { return this.count == 0; }
+    { return count == 0; }
 
     public boolean contains(K key)
     { return get(key) != null; }
@@ -45,7 +45,7 @@ public class SequentialSearchST<K, V> {
             }
         }
         first = new Node(key, value, first);
-        this.count++;
+        count++;
     }
 
     public void delete(K key)
@@ -58,7 +58,7 @@ public class SequentialSearchST<K, V> {
         if (x == null) return null;
         if (key.equals(x.key))
         {
-            this.count--;
+            count--;
             return x.next;
         }
         x.next = delete(x.next, key);

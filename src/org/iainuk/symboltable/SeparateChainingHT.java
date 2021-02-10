@@ -12,21 +12,23 @@ public class SeparateChainingHT<K, V> {
     public SeparateChainingHT()
     { this(INITIAL_CAPACITY); }
 
-    public SeparateChainingHT(int size)
+    public SeparateChainingHT(int tableSize)
     {
-        this.count = 0;
-        this.tableSize = size;
-        for (int i = 0; i < size; i++)
+        count = 0;
+        this.tableSize = tableSize;
+        table = (SequentialSearchST<K, V>[]) new SequentialSearchST[tableSize];
+
+        for (int i = 0; i < tableSize; i++)
         {
-            this.table[i] = new SequentialSearchST<>();
+            table[i] = new SequentialSearchST<>();
         }
     }
 
     public int size()
-    { return this.count; }
+    { return count; }
 
     public boolean isEmpty()
-    { return this.count == 0;}
+    { return count == 0;}
 
     public boolean contains(K key)
     { return get(key) != null; }
@@ -42,7 +44,7 @@ public class SeparateChainingHT<K, V> {
 
     public void put(K key, V value)
     {
-        if (this.count >= 10*tableSize) resize(2*tableSize);
+        if (count >= 10*tableSize) resize(2*tableSize);
 
         int hash = hash(key);
         table[hash].put(key, value);
@@ -54,10 +56,10 @@ public class SeparateChainingHT<K, V> {
         if (table[hash].contains(key))
         {
             table[hash].delete(key);
-            this.count--;
+            count--;
         }
 
-        if (tableSize > INITIAL_CAPACITY && this.count <= tableSize*2)
+        if (tableSize > INITIAL_CAPACITY && count <= tableSize*2)
             resize(tableSize/2);
     }
 

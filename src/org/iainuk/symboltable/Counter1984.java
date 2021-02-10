@@ -36,7 +36,5 @@ public class Counter1984 {
 
         System.out.println();
 
-        System.out.println(rb.height());
-
     }
 }
