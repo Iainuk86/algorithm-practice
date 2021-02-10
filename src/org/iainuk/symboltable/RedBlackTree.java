@@ -193,20 +193,20 @@ public class RedBlackTree<K extends  Comparable<K>, V> {
         // assert check();
     }
 
-    // delete the key-value pair with the maximum key rooted at h
-    private Node deleteMax(Node h) {
-        if (isRed(h.left))
-            h = rotateRight(h);
+    // delete the key-value pair with the maximum key rooted at x
+    private Node deleteMax(Node x) {
+        if (isRed(x.left))
+            x = rotateRight(x);
 
-        if (h.right == null)
+        if (x.right == null)
             return null;
 
-        if (!isRed(h.right) && !isRed(h.right.left))
-            h = moveRedRight(h);
+        if (!isRed(x.right) && !isRed(x.right.left))
+            x = moveRedRight(x);
 
-        h.right = deleteMax(h.right);
+        x.right = deleteMax(x.right);
 
-        return balance(h);
+        return balance(x);
     }
 
     public void delete(K key) {
@@ -251,17 +251,9 @@ public class RedBlackTree<K extends  Comparable<K>, V> {
         return balance(x);
     }
 
-    public int height() {
-        return height(root);
-    }
-    private int height(Node x) {
-        if (x == null) return -1;
-        return 1 + Math.max(height(x.left), height(x.right));
-    }
-
     private Node moveRedLeft(Node x)
-    { // Assuming that h is red and both h.left and h.left.left
-        // are black, make h.left or one of its children red.
+    { // Assuming that x is red and both x.left and x.left.left
+        // are black, make x.left or one of its children red.
         flipColours(x);
         if (isRed(x.right.left))
         {
@@ -272,15 +264,18 @@ public class RedBlackTree<K extends  Comparable<K>, V> {
         return x;
     }
 
-    private Node moveRedRight(Node h) {
-        // assert (h != null);
-        // assert isRed(h) && !isRed(h.right) && !isRed(h.right.left);
-        flipColours(h);
-        if (isRed(h.left.left)) {
-            h = rotateRight(h);
-            flipColours(h);
+    private Node moveRedRight(Node x) {
+        // Assuming that x is red and both x.right and x.right.left
+        // are black, make x.right or one of its children red.
+
+        // assert (x != null);
+        // assert isRed(x) && !isRed(x.right) && !isRed(x.right.left);
+        flipColours(x);
+        if (isRed(x.left.left)) {
+            x = rotateRight(x);
+            flipColours(x);
         }
-        return h;
+        return x;
     }
 
     private Node balance(Node x)

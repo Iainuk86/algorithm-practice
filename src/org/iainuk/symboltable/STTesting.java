@@ -33,11 +33,12 @@ public class STTesting {
         rb.put("O", rb.size());
         rb.put("N", rb.size());
 
-        System.out.println(bst.height());
-
-        System.out.println();
-
-        System.out.println(rb.height());
+        System.out.println(rb.min());
+        rb.deleteMin();
+        System.out.println(rb.min());
+        System.out.println(rb.max());
+        rb.deleteMax();
+        System.out.println(rb.max());
 
     }
 
