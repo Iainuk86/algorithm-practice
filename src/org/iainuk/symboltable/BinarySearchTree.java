@@ -2,6 +2,8 @@ package org.iainuk.symboltable;
 
 import org.iainuk.queue.ArrayQueue;
 
+import java.util.NoSuchElementException;
+
 public class BinarySearchTree<K extends Comparable<K>, V> {
 
     private Node root;
@@ -17,6 +19,9 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 
     public boolean isEmpty()
     { return size(root) == 0; }
+
+    public boolean contains(K key)
+    { return get(key) != null; }
 
     public V get(K key)
     {
@@ -54,20 +59,20 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
     public K min()
     {
         Node x = min(root);
-        if (x == null) return null;
         return x.key;
     }
 
     private Node min(Node x)
     {
+        if (size(root) == 0) throw new NoSuchElementException("Tree is empty");
         if (x.left == null) return x;
         return min(x.left);
     }
 
     public K max()
     {
+        if (size(root) == 0) throw new NoSuchElementException("Tree is empty");
         Node x = max(root);
-        if (x == null) return null;
         return x.key;
     }
 

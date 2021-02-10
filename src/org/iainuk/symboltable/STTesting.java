@@ -5,6 +5,7 @@ public class STTesting {
     public static void main(String[] args) {
 
         BinarySearchTree<String, Integer> bst = new BinarySearchTree<>();
+        RedBlackTree<String, Integer> rb = new RedBlackTree<>();
 
         bst.put("E", bst.size());
         bst.put("A", bst.size());
@@ -19,15 +20,24 @@ public class STTesting {
         bst.put("O", bst.size());
         bst.put("N", bst.size());
 
-        for (String key : bst.keys()) {
-            System.out.println(key + ": " + bst.get(key));
-        }
+        rb.put("E", rb.size());
+        rb.put("A", rb.size());
+        rb.put("S", rb.size());
+        rb.put("Y", rb.size());
+        rb.put("Q", rb.size());
+        rb.put("U", rb.size());
+        rb.put("E", rb.size());
+        rb.put("S", rb.size());
+        rb.put("T", rb.size());
+        rb.put("I", rb.size());
+        rb.put("O", rb.size());
+        rb.put("N", rb.size());
+
+        System.out.println(bst.height());
 
         System.out.println();
 
-        for (String key : bst.keys("E", "Q")) {
-            System.out.println(key + ": " + bst.get(key));
-        }
+        System.out.println(rb.height());
 
     }
 
