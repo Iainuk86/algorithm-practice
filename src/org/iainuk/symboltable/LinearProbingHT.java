@@ -4,13 +4,15 @@ import org.iainuk.queue.ArrayQueue;
 
 public class LinearProbingHT<K, V> {
 
+    private static final int INITIAL_CAPACITY = 4;
+
     private int count;
     private int tableSize;
     private K[] keys;
     private V[] values;
 
     public LinearProbingHT()
-    { this(997); }
+    { this(INITIAL_CAPACITY); }
 
     public LinearProbingHT(int tableSize)
     {
@@ -29,12 +31,12 @@ public class LinearProbingHT<K, V> {
     public boolean contains(K key)
     { return get(key) != null; }
 
-    public int hash(K key)
+    public int getHash(K key)
     { return (key.hashCode() & 0x7fffffff) % tableSize; }
 
     public V get(K key)
     {
-        for (int i = hash(key); keys[i] != null; i = (i+1) % tableSize)
+        for (int i = getHash(key); keys[i] != null; i = (i+1) % tableSize)
         {
             if (keys[i].equals(key)) return values[i];
         }
@@ -46,7 +48,7 @@ public class LinearProbingHT<K, V> {
         if (count >= tableSize/2)   resize(2*tableSize);
 
         int i;
-        for (i = hash(key); keys[i] != null; i = (i+1) % tableSize)
+        for (i = getHash(key); keys[i] != null; i = (i+1) % tableSize)
         {
             if (keys[i].equals(key)) { values[i] = value; return; }
         }
@@ -59,7 +61,7 @@ public class LinearProbingHT<K, V> {
     {
         if (!contains(key)) return;
 
-        int i = hash(key);
+        int i = getHash(key);
         while (!keys[i].equals(key))
         {
             i = (i+1) % tableSize;
@@ -71,22 +73,23 @@ public class LinearProbingHT<K, V> {
 
         while (keys[i] != null)
         {
-            K keyToRedo = keys[i];
-            V valueToRedo = values[i];
+            K keyToReput = keys[i];
+            V valueToReput = values[i];
             keys[i] = null;
             values[i] = null;
             count--;
-            put(keyToRedo, valueToRedo);
+            put(keyToReput, valueToReput);
             i = (i+1) % tableSize;
         }
         count--;
+
         if (count > 0 && count <= tableSize/8) resize(tableSize/2);
     }
 
     public Iterable<K> keys()
     {
         ArrayQueue<K> queue = new ArrayQueue<>();
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < tableSize; i++)
         {
             if (keys[i] != null) queue.enqueue(keys[i]);
         }

@@ -33,12 +33,12 @@ public class SeparateChainingHT<K, V> {
     public boolean contains(K key)
     { return get(key) != null; }
 
-    public int hash(K key)
+    public int getHash(K key)
     { return (key.hashCode() & 0x7fffffff) % tableSize; }
 
     public V get(K key)
     {
-        int hash = hash(key);
+        int hash = getHash(key);
         return table[hash].get(key);
     }
 
@@ -46,13 +46,13 @@ public class SeparateChainingHT<K, V> {
     {
         if (count >= 10*tableSize) resize(2*tableSize);
 
-        int hash = hash(key);
+        int hash = getHash(key);
         table[hash].put(key, value);
     }
 
     public void delete(K key)
     {
-        int hash = hash(key);
+        int hash = getHash(key);
         if (table[hash].contains(key))
         {
             table[hash].delete(key);
