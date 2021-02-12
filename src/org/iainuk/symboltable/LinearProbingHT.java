@@ -3,7 +3,6 @@ package org.iainuk.symboltable;
 import org.iainuk.queue.ArrayQueue;
 
 public class LinearProbingHT<K, V> {
-
     private static final int INITIAL_CAPACITY = 4;
 
     private int count;
@@ -101,7 +100,7 @@ public class LinearProbingHT<K, V> {
         K[] newKeys = (K[]) new Object[newSize];
         V[] newVals = (V[]) new Object[newSize];
 
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < tableSize; i++)
         {
             newKeys[i] = keys[i];
             newVals[i] = values[i];
