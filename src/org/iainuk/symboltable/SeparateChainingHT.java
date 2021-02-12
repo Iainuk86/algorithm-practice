@@ -48,6 +48,7 @@ public class SeparateChainingHT<K, V> {
 
         int hash = getHash(key);
         table[hash].put(key, value);
+        count++;
     }
 
     public void delete(K key)
