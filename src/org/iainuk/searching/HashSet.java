@@ -1,5 +1,7 @@
 package org.iainuk.searching;
 
+import org.iainuk.queue.ArrayQueue;
+
 public class HashSet<T> {
 
     private static final int INITIAL_CAPACITY = 4;
@@ -45,11 +47,43 @@ public class HashSet<T> {
             if (set[i].equals(key)) return;
         }
         set[i] = key;
+        count++;
     }
 
     public void delete(T key)
     {
+        if (!contains(key)) return;
 
+        int i = getHash(key);
+        while (!set[i].equals(key))
+            i = (i+1) % set.length;
+
+        set[i] = null;
+        i = (i+1) % set.length;
+
+        while (set[i] != null)
+        {
+            T keyToReput = set[i];
+            set[i] = null;
+            count--;
+            add(keyToReput);
+            i = (i+1) % set.length;
+        }
+
+        count--;
+        if (set.length > INITIAL_CAPACITY && count <= set.length/8)
+            resize(set.length/2);
+    }
+
+    public Iterable<T> keys()
+    {
+        ArrayQueue<T> queue = new ArrayQueue<>();
+        for (int i = 0; i < set.length; i++)
+        {
+            if (set[i] == null) continue;
+            queue.enqueue(set[i]);
+        }
+        return queue;
     }
 
     public void resize(int newCapacity)
