@@ -5,21 +5,21 @@ public class DepthFirstSearch {
     private int count;
     private boolean[] marked;
 
-    public DepthFirstSearch(UndirectedGraph G, int source)
+    public DepthFirstSearch(UndirectedGraph graph, int source)
     {
         count = 0;
-        marked = new boolean[G.numberOfVertices()];
-        search(G, source);
+        marked = new boolean[graph.numberOfVertices()];
+        search(graph, source);
     }
 
-    private void search(UndirectedGraph G, int vertex)
+    private void search(UndirectedGraph graph, int vertex)
     {
         marked[vertex] = true;
         count++;
-        for (int w : G.adjacent(vertex))
+        for (int w : graph.adjacent(vertex))
         {
             if (!marked[w])
-                search(G, w);
+                search(graph, w);
         }
     }
 

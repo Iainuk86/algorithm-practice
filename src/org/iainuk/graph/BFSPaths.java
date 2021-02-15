@@ -1,15 +1,16 @@
 package org.iainuk.graph;
 
+import org.iainuk.queue.ArrayQueue;
 import org.iainuk.stack.ArrayStack;
 
-public class DepthFirstPaths {
+public class BFSPaths {
 
     private int count;
     private int source;
     private int[] edgeTo;
     public boolean[] marked;
 
-    public DepthFirstPaths(UndirectedGraph graph, int source)
+    public BFSPaths(UndirectedGraph graph, int source)
     {
         count = 0;
         this.source = source;
@@ -19,16 +20,25 @@ public class DepthFirstPaths {
         search(graph, source);
     }
 
-    private void search(UndirectedGraph graph, int vertex)
+    private void search(UndirectedGraph graph, int source)
     {
-        marked[vertex] = true;
-        count++;
-        for (int w : graph.adjacent(vertex))
+        ArrayQueue<Integer> queue = new ArrayQueue<>();
+
+        queue.enqueue(source);
+        while (!queue.isEmpty())
         {
-            if (!marked[w])
+            int vertex = queue.dequeue();
+            marked[vertex] = true;
+            count++;
+
+            for (int w : graph.adjacent(vertex))
             {
-                edgeTo[w] = vertex;
-                search(graph, w);
+                if (!marked[w])
+                {
+                    marked[w] = true;
+                    edgeTo[w] = vertex;
+                    queue.enqueue(w);
+                }
             }
         }
     }
