@@ -3,14 +3,14 @@ package org.iainuk.graph;
 import org.iainuk.queue.ArrayQueue;
 import org.iainuk.stack.ArrayStack;
 
-public class BFSPaths {
+public class BreadthFirstPaths {
 
     private int count;
     private int source;
     private int[] edgeTo;
     public boolean[] marked;
 
-    public BFSPaths(UndirectedGraph graph, int source)
+    public BreadthFirstPaths(UndirectedGraph graph, int source)
     {
         count = 0;
         this.source = source;

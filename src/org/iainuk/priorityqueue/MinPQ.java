@@ -2,23 +2,23 @@ package org.iainuk.priorityqueue;
 
 import java.util.List;
 
-public class MaxPQ<T extends Comparable<T>> {
+public class MinPQ<T extends Comparable<T>> {
 
     private T[] pq;
     private int count;
 
-    public MaxPQ()
+    public MinPQ()
     {
         this(1);
     }
 
-    public MaxPQ(int max)
+    public MinPQ(int max)
     {
         count = 0;
         pq = (T[]) new Comparable[max+1];
     }
 
-    public MaxPQ(List<T> list)
+    public MinPQ(List<T> list)
     {
         count = 0;
         int N = list.size();
@@ -29,7 +29,7 @@ public class MaxPQ<T extends Comparable<T>> {
         }
     }
 
-    public MaxPQ(T[] array)
+    public MinPQ(T[] array)
     {
         count = 0;
         int N = array.length;
@@ -43,7 +43,7 @@ public class MaxPQ<T extends Comparable<T>> {
     public boolean isEmpty()
     { return count == 0; }
 
-    public int count()
+    public int size()
     { return count; }
 
     public void insert(T key)
@@ -53,9 +53,9 @@ public class MaxPQ<T extends Comparable<T>> {
         swim(count);
     }
 
-    public T delMax()
+    public T delMin()
     {
-        T max = pq[1];
+        T min = pq[1];
         exchange(1, count--);
         pq[count +1] = null;
         sink(1);
@@ -63,12 +63,12 @@ public class MaxPQ<T extends Comparable<T>> {
         if (count > 0 && count == pq.length/4)
             resize(pq.length/2);
 
-        return max;
+        return min;
     }
 
     public void swim(int key)
     {
-        while (key > 1 && less(key/2, key))
+        while (key > 1 && less(key, key/2))
         {
             exchange(key, key/2);
             key = key/2;
@@ -80,8 +80,8 @@ public class MaxPQ<T extends Comparable<T>> {
         while (2*key <= count)
         {
             int j = 2*key;
-            if (j < count && less(j, j+1))   j++;
-            if (pq[key].compareTo(pq[j]) >= 0) return;
+            if (j < count && less(j+1, j))   j++;
+            if (pq[key].compareTo(pq[j]) <= 0) return;
             exchange(key, j);
             key = j;
         }
