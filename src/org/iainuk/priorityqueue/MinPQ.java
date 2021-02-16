@@ -40,6 +40,15 @@ public class MinPQ<T extends Comparable<T>> {
         }
     }
 
+    public MinPQ(Iterable<T> iterable)
+    {
+        count = 0;
+        pq = (T[]) new Comparable[2];
+
+        for (T item : iterable)
+            this.insert(item);
+    }
+
     public boolean isEmpty()
     { return count == 0; }
 
