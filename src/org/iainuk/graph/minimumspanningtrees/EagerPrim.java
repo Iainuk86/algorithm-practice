@@ -47,7 +47,7 @@ public class EagerPrim {
     {
         ArrayQueue<Edge> edges = new ArrayQueue<>();
 
-        for (int v = 0; v < edgeTo.length; v++)
+        for (int v = 1; v < edgeTo.length; v++)
         {
             if (edgeTo[v] != null)
                 edges.enqueue(edgeTo[v]);
@@ -60,7 +60,7 @@ public class EagerPrim {
     {
         double weight = 0.0;
 
-        for (int v = 0; v < edgeTo.length; v++)
+        for (int v = 1; v < edgeTo.length; v++)
         {
             if (edgeTo[v] != null)
                 weight += edgeTo[v].weight();

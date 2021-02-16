@@ -1,4 +1,4 @@
-package org.iainuk.graph.minimumspanningtrees;
+package org.iainuk.graph.shortestpathtrees;
 
 public class DirectedEdge {
 
