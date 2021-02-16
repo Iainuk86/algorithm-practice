@@ -3,8 +3,8 @@ package org.iainuk.graph;
 public class ConnectedComponents {
 
     private int count;
-    private boolean[] marked;
     private int[] id;
+    private boolean[] marked;
 
     public ConnectedComponents(UndirectedGraph g)
     {

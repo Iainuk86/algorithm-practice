@@ -2,13 +2,13 @@ package org.iainuk.graph;
 
 import org.iainuk.searching.Bag;
 
-public class UndirectedGraph {
+public class Digraph {
 
     private int edges;
     private int vertices;
     private Bag<Integer>[] adjacentVertices;
 
-    public UndirectedGraph(int vertices)
+    public Digraph(int vertices)
     {
         edges = 0;
         this.vertices = vertices;
@@ -27,10 +27,22 @@ public class UndirectedGraph {
     public void addEdge(int from, int to)
     {
         adjacentVertices[from].add(to);
-        adjacentVertices[to].add(from);
         edges++;
     }
 
     public Iterable<Integer> adjacent(int vertex)
     { return adjacentVertices[vertex]; }
+
+    public Digraph reverse()
+    {
+        Digraph reverse = new Digraph(vertices);
+
+        for (int v = 0; v < vertices; v++)
+        {
+            for (int w : adjacentVertices[v])
+                reverse.addEdge(w, v);
+        }
+
+        return reverse;
+    }
 }

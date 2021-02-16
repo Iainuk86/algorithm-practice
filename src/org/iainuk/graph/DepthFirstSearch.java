@@ -29,6 +29,6 @@ public class DepthFirstSearch {
     public boolean connectedToSource(int vertex)
     { return marked[vertex]; }
 
-    public boolean connectedToEachother(int from, int to)
+    public boolean connectedToEachOther(int from, int to)
     { return marked[from] && marked[to]; }
 }
