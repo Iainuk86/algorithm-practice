@@ -2,14 +2,14 @@ package org.iainuk.graph.shortestpathtrees;
 
 import org.iainuk.stack.ArrayStack;
 
-public class EdgeWeightedCycleFinder {
+public class NegativeCycleFinder {
 
     private boolean[] marked;
     private boolean[] onStack;
     private DirectedEdge[] edgeTo;
     private Iterable<DirectedEdge> cycle;
 
-    public EdgeWeightedCycleFinder(EdgeWeightedDigraph graph)
+    public NegativeCycleFinder(EdgeWeightedDigraph graph)
     {
         marked = new boolean[graph.numberOfVertices()];
         onStack = new boolean[graph.numberOfVertices()];
@@ -35,15 +35,19 @@ public class EdgeWeightedCycleFinder {
             }
             else if (onStack[next])
             {
+                double weight = 0.0;
                 ArrayStack<DirectedEdge> foundCycle = new ArrayStack<>();
 
                 DirectedEdge f = e;
                 while (f.from() != next)
                 {
+                    weight += f.weight();
                     foundCycle.push(f);
                     f = edgeTo[f.from()];
                 }
                 foundCycle.push(f);
+
+                if (weight >= 0) continue;
 
                 cycle = foundCycle;
                 return;

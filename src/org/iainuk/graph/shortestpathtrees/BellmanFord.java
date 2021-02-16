@@ -81,12 +81,16 @@ public class BellmanFord {
 
     private void detectNegativeCycle()
     {
-        // TODO FINISH AFTER TENNIS
         int N = edgeTo.length;
         EdgeWeightedDigraph copy = new EdgeWeightedDigraph(N);
 
         for (int v = 0; v < N; v++)
             if (edgeTo[v] != null)
                 copy.addEdge(edgeTo[v]);
+
+        NegativeCycleFinder cf = new NegativeCycleFinder(copy);
+
+        if (cf.hasCycle())
+            cycle = cf.cycle();
     }
 }

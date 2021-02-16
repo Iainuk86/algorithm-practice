@@ -3,7 +3,7 @@ package org.iainuk.sorting;
 import org.iainuk.graph.DepthFirstOrder;
 import org.iainuk.graph.Digraph;
 import org.iainuk.graph.DigraphCycleFinder;
-import org.iainuk.graph.shortestpathtrees.EdgeWeightedCycleFinder;
+import org.iainuk.graph.shortestpathtrees.NegativeCycleFinder;
 import org.iainuk.graph.shortestpathtrees.EdgeWeightedDigraph;
 
 public class Topological {
@@ -23,7 +23,7 @@ public class Topological {
 
     public Topological(EdgeWeightedDigraph graph)
     {
-        EdgeWeightedCycleFinder cf = new EdgeWeightedCycleFinder(graph);
+        NegativeCycleFinder cf = new NegativeCycleFinder(graph);
 
         if (!cf.hasCycle())
         {
