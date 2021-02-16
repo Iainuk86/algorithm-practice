@@ -1,5 +1,7 @@
 package org.iainuk.graph;
 
+import org.iainuk.graph.shortestpathtrees.DirectedEdge;
+import org.iainuk.graph.shortestpathtrees.EdgeWeightedDigraph;
 import org.iainuk.queue.ArrayQueue;
 import org.iainuk.stack.ArrayStack;
 
@@ -30,6 +32,32 @@ public class DepthFirstOrder {
         {
             if (!marked[next])
                 search(graph, next);
+        }
+
+        postOrder.enqueue(vertex);
+        reversePost.push(vertex);
+    }
+
+    public DepthFirstOrder(EdgeWeightedDigraph graph)
+    {
+        marked = new boolean[graph.numberOfVertices()];
+        preOrder = new ArrayQueue<>();
+        postOrder = new ArrayQueue<>();
+        reversePost = new ArrayStack<>();
+
+        for (int v = 0; v < graph.numberOfVertices(); v++)
+            if (!marked[v])
+                search(graph, v);
+    }
+
+    private void search(EdgeWeightedDigraph graph, int vertex)
+    {
+        preOrder.enqueue(vertex);
+        marked[vertex] = true;
+        for (DirectedEdge e : graph.adjacent(vertex))
+        {
+            if (!marked[e.to()])
+                search(graph, e.to());
         }
 
         postOrder.enqueue(vertex);

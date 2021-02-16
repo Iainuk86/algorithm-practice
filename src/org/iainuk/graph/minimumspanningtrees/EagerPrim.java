@@ -23,7 +23,7 @@ public class EagerPrim {
         distTo[0] = 0.0;
         pq.insert(0, 0.0);
         while (!pq.isEmpty())
-            { visit(graph, pq.indexOfMinimumValue()); pq.delMin(); }
+            { visit(graph, pq.indexOfMinimumValue()); pq.delMin(); } // TODO and this
     }
 
     private void visit(EdgeWeightedGraph graph, int vertex)
