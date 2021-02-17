@@ -1,6 +1,6 @@
 package org.iainuk.strings;
 
-public class LSDSort {
+public class LSDRadix {
 
     public static void sort(String[] array)
     { sort(array, 0); }

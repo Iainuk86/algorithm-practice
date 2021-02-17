@@ -1,6 +1,6 @@
 package org.iainuk.strings;
 
-public class MSDSort {
+public class MSDRadix {
 
     private static final int CUTOFF = 7;
 
@@ -29,7 +29,7 @@ public class MSDSort {
         { aux[count[charAt(array[i], digit)+1]++] = array[i]; }
 
         for (int i = lo; i <= hi; i++)
-        { array[i] = aux[i - lo]; }
+        { array[i] = aux[i - lo]; } // with recursion, the aux array will be a lot shorter so i-lo is needed
 
         for (int r = 0; r < R; r++)
         { sort(array, lo + count[r], lo + count[r+1] - 1, digit+1); }
