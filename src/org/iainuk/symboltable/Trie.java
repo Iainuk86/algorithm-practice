@@ -15,7 +15,7 @@ public class Trie<V> {
     { return count == 0; }
 
     public boolean contains(String key)
-    { return get(root, key, 0) != null; }
+    { return get(key) != null; }
 
     public V get(String key)
     {
@@ -39,10 +39,12 @@ public class Trie<V> {
 
     private Node put(Node x, String key, V value, int digit)
     {
-        if (x == null)                     x = new Node();
+        if (x == null) x = new Node();
         // its not length-1 because you're starting at the root
         if (digit == key.length() && x.value != null)
-        { x.value = value; return x; }
+        {
+            x.value = value; return x;
+        }
 
         if (digit == key.length())
         {
@@ -123,7 +125,7 @@ public class Trie<V> {
         char next = key.charAt(digit);
         for (char c = 0; c < R; c++)
         {
-            if (next == c || next == '.')
+            if (next == c || next == '?') // Whatever token is used for wildcard
                 collect(x.next[c], pre+c, key, queue);
         }
     }
