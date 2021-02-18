@@ -35,7 +35,10 @@ public class TernarySearchTree<V> {
     }
 
     public void put(String key, V value)
-    { root = put(root, key, value, 0); }
+    {
+        if (key.length() == 0) throw new IllegalArgumentException("String can not be empty");
+        root = put(root, key, value, 0);
+    }
 
     private Node put(Node x, String key, V value, int digit)
     {

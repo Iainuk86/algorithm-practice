@@ -2,6 +2,40 @@ package org.iainuk.strings;
 
 public class SubstringSearch {
 
+    public String longestRepeatedSubstring(String text)
+    {
+        int N = text.length();
+        SuffixArray suffixArray = new SuffixArray(text);
+
+        String longest = "";
+        for (int i = 1; i < N; i++)
+        {
+            int length = suffixArray.longestCommonPrefix(i);
+            if (length > longest.length())
+                longest = suffixArray.select(i).substring(0, length);
+        }
+
+        return longest;
+    }
+
+    public void printSubstringSearchWithContext(String query, String text)
+    { printSubstringSearchWithContext(query, text, 15); }
+
+    public void printSubstringSearchWithContext(String query, String text, int context)
+    {
+        String newText = text.replaceAll("\\s+", " ");
+        int N = newText.length();
+        SuffixArray suffixArray = new SuffixArray(newText);
+
+        for (int i = suffixArray.rank(query); i < N && suffixArray.select(i).startsWith(query); i++)
+        {
+            int from = Math.max(0, suffixArray.originalIndex(i) - context);
+            int to = Math.min(N-1, from + query.length() + 2*context);
+            System.out.println(newText.substring(from, to));
+        }
+        System.out.println();
+    }
+
     public boolean bruteForceSearch(String search, String text)
     {
         int N = text.length();
