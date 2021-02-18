@@ -1,5 +1,7 @@
 package org.iainuk.symboltable;
 
+import org.iainuk.queue.ArrayQueue;
+
 import java.util.NoSuchElementException;
 
 public class RedBlackTree<K extends  Comparable<K>, V> {
@@ -157,6 +159,27 @@ public class RedBlackTree<K extends  Comparable<K>, V> {
         if      (cmp < 0)   return rank(x.left, key);
         else if (cmp > 0)   return 1 + size(x.left) + rank(x.right, key);
         else                return size(x.left);
+    }
+
+    public Iterable<K> keys()
+    { return keys(min(), max()); }
+
+    public Iterable<K> keys(K lo, K hi)
+    {
+        ArrayQueue<K> q = new ArrayQueue();
+        keys(root, q, lo, hi);
+        return q;
+    }
+
+    private void keys(Node x, ArrayQueue<K> q, K lo, K hi)
+    {
+        if (x == null) return;
+
+        int cmplo = lo.compareTo(x.key);
+        int cmphi = hi.compareTo(x.key);
+        if (cmplo < 0)                  keys(x.left, q, lo, hi);
+        if (cmplo <= 0 && cmphi >= 0)   q.enqueue(x.key);
+        if (cmphi > 0)                  keys(x.right, q, lo, hi);
     }
 
     public void deleteMin()
