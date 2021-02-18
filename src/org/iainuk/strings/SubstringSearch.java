@@ -21,14 +21,13 @@ public class SubstringSearch {
     public String longestInPlaceCommonString(String a, String b)
     {   // very ugly brute force version
 
-        String shortest = "";
-        String longest = "";
+        String shortest;
+        String longest;
 
         if (a.length() < b.length()) {
             shortest = a;
             longest = b;
-        }
-        else if (b.length() <= a.length()) {
+        } else {
             shortest = b;
             longest = a;
         }
